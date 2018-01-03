@@ -32,7 +32,7 @@ def makeWebhookResult(req):
     result = req.get("result")
 
     cost = {'prescription1':5, 'prescription2':4, 'prescription3':8}
-    speech = "Votre prescription est composée des capsules " + str(cost[prescription1]) + ", " + str(cost[prescription2]) + " et " + str(cost[prescription3]) + "."
+    speech = "Votre prescription est composée des capsules " + str(cost['prescription1']) + ", " + str(cost['prescription2']) + " et " + str(cost['prescription3']) + "."
 
     print("Response:")
     print(speech)
