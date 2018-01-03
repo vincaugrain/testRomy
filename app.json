@@ -1,0 +1,7 @@
+{
+  "name": "DialogFlow Romy Prescription",
+  "description": "DialogFlow Romy Prescription Webhook Test",
+  "repository": "https://github.com/vincaugrain/testRomy",
+  "logo": "http://xvir.github.io/img/apiai.png",
+  "keywords": ["DialogFlow", "natural language"]
+}
