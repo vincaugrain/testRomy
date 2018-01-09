@@ -60,7 +60,7 @@ def makeWebhookResult(req, cost):
     if cost[1] == 0:
     	speech = "Votre prescription n'est pas prête pour le moment. Merci de réessayer ulterieurement."
     else:
-	    speech = "Votre prescription est composée des capsules " + str(cost[1]) + 
+	    speech = "Votre prescription est composée des capsules " + str(cost[1])
 	    if cost[2] != 0:
 	        if cost[3] != 0:
 	        	speech = speech + ", " + str(cost[2]) + " et " + str(cost[3]) + "."
