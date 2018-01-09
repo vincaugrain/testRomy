@@ -40,11 +40,11 @@ def parseRes(data):
 def processRequest(req):
     if req.get("result").get("action") != "get_prescription":
         return {}
-    baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription"
+    url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
-    url = baseurl
+ 	token = "Bearer " + str(accessToken)
 
-	request = urllib2.Request(url, headers={"Authorization" : "Bearer " + str(accessToken)})
+	request = urllib2.Request(url, headers={"Authorization" : token})
 	result = urllib2.urlopen(request).read()
 
     last = result.get_json(silent=True, force=True)
