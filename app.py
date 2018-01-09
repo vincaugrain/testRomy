@@ -29,8 +29,8 @@ def webhook():
     return r
 
 def parseRes(data):
-	firstname = data.get('firstname')
-	caps = data.get('capsules')
+    firstname = data.get('firstname')
+    caps = data.get('capsules')
     i = 1
     ret = {1:0, 2:0, 3:0}
     for element in caps:
