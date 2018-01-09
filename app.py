@@ -18,7 +18,7 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = makeWebhookResult(req)
+    res = processRequest(req)
 
     res = json.dumps(res, indent=4)
     print(res)
@@ -26,13 +26,42 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def makeWebhookResult(req):
+def parseRes(data)
+	i = 1
+	ret = {1:0, 2:0, 3:0}
+	for element in data:
+		query = element.get('name')
+	    if query is None:
+	        return {}
+	    result = element.get('color')
+	    if result is None:
+	        return {}
+	    ret[i] = element.get('name')
+	    i = i + 1
+	return ret
+
+
+def processRequest(req):
+    if req.get("result").get("action") != "get_prescription":
+        return {}
+    baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription"
+    url = baseurl + "&format=json"
+    result = urlopen(url).read()
+    data = json.loads(result)
+    cost = parseRes(data)
+    res = makeWebhookResult(data, cost)
+    return res
+
+def makeWebhookResult(req, cost):
     if req.get("result").get("action") != "get_prescription":
         return {}
     result = req.get("result")
-
-    cost = {'prescription1':5, 'prescription2':4, 'prescription3':8}
-    speech = "Votre prescription est composée des capsules " + str(cost['prescription1']) + ", " + str(cost['prescription2']) + " et " + str(cost['prescription3']) + "."
+    
+    speech = "Votre prescription est composée des capsules " + str(cost[1]) + ", " 
+    if cost[2] != 0:
+    	speech = speech + str(cost['prescription2'])
+    if cost[3] != 0:
+    	speech = speech + " et " + str(cost['prescription3']) + "."
 
     print("Response:")
     print(speech)
@@ -44,7 +73,6 @@ def makeWebhookResult(req):
         # "contextOut": [],
         "source": "apiai-romyTestPrescription"
     }
-
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
