@@ -39,9 +39,9 @@ def parseRes(data):
 def processRequest(req):
     if req.get("result").get("action") != "get_prescription":
         return {}
-    baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription"
+    baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription?"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
-    url = baseurl + "&format=json" + "&accessToken=" + str(accessToken)
+    url = baseurl + "format=json" + "&accessToken=" + str(accessToken)
     result = urlopen(url).read()
     last = result.get_json(silent=True, force=True)
     print(print(json.dumps(last, indent=4)))
