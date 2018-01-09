@@ -30,22 +30,22 @@ def webhook():
     return r
 
 def parseRes(data):
-	i = 1
-	ret = {1:0, 2:0, 3:0}
-	for element in data:
-	    ret[i] = element.get('name')
-	    i = i + 1
-	return ret
+    i = 1
+    ret = {1:0, 2:0, 3:0}
+    for element in data:
+        ret[i] = element.get('name')
+        i = i + 1
+    return ret
 
 def processRequest(req):
     if req.get("result").get("action") != "get_prescription":
         return {}
     url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
- 	token = "Bearer " + accessToken
+     token = "Bearer " + accessToken
 
-	request = urllib2.Request(url, headers={"Authorization" : token})
-	result = urllib2.urlopen(request).read()
+    request = urllib2.Request(url, headers={"Authorization" : token})
+    result = urllib2.urlopen(request).read()
 
     last = result.get_json(silent=True, force=True)
     print(print(json.dumps(last, indent=4)))
@@ -61,9 +61,9 @@ def makeWebhookResult(req, cost):
 
     speech = "Votre prescription est composée des capsules " + str(cost[1]) + ", " 
     if cost[2] != 0:
-    	speech = speech + str(cost['prescription2'])
+        speech = speech + str(cost['prescription2'])
     if cost[3] != 0:
-    	speech = speech + " et " + str(cost['prescription3']) + "."
+        speech = speech + " et " + str(cost['prescription3']) + "."
 
     print("Response:")
     print(speech)
