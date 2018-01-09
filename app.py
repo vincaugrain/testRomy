@@ -3,6 +3,7 @@
 import urllib
 import json
 import os
+import urllib2
 
 from flask import Flask
 from flask import request
@@ -41,8 +42,11 @@ def processRequest(req):
         return {}
     baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription?"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
-    url = baseurl + "format=json" + "&accessToken=" + str(accessToken)
-    result = urlopen(url).read()
+    url = baseurl
+
+	request = urllib2.Request(url, headers={"Authorization" : "Bearer " + str(accessToken)})
+	result = urllib2.urlopen(request).read()
+
     last = result.get_json(silent=True, force=True)
     print(print(json.dumps(last, indent=4)))
     data = json.loads(result)
