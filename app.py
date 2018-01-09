@@ -43,7 +43,7 @@ def processRequest(req):
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
     token = "Bearer " + accessToken
 
-    request = urllib.Request(url, headers={"Authorization" : token})
+    request = urllib.request(url, headers={"Authorization" : token})
     result = urllib.urlopen(request).read()
 
     last = result.get_json(silent=True, force=True)
