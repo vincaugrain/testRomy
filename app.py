@@ -42,7 +42,7 @@ def processRequest(req):
     url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
     token = "Bearer " + accessToken
-
+    print(accessToken)
     request = urllib.request.Request(url, headers={"Authorization" : token})
     result = urllib.request.urlopen(request).read()
 
@@ -57,12 +57,18 @@ def makeWebhookResult(req, cost):
     if req.get("result").get("action") != "get_prescription":
         return {}
     result = req.get("result")
-
-    speech = "Votre prescription est composée des capsules " + str(cost[1]) + ", " 
-    if cost[2] != 0:
-        speech = speech + str(cost['prescription2'])
-    if cost[3] != 0:
-        speech = speech + " et " + str(cost['prescription3']) + "."
+    if cost[1] == 0:
+    	speech = "Votre prescription n'est pas prête pour le moment. Merci de réessayer ulterieurement."
+    else:
+	    speech = "Votre prescription est composée des capsules " + str(cost[1]) + 
+	    if cost[2] != 0:
+	        if cost[3] != 0:
+	        	speech = speech + ", " + str(cost[2]) + " et " + str(cost[3]) + "."
+	        else:
+	        	speech = speech + " et " str(cost[2])
+	    else:
+	    	speech = "Votre prescription est composée de la capsule " + str(cost[1]) + "." 
+    
 
     print("Response:")
     print(speech)
