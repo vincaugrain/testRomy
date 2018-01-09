@@ -42,7 +42,7 @@ def processRequest(req):
         return {}
     url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
-     token = "Bearer " + accessToken
+    token = "Bearer " + accessToken
 
     request = urllib2.Request(url, headers={"Authorization" : token})
     result = urllib2.urlopen(request).read()
