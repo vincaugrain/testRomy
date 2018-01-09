@@ -30,12 +30,6 @@ def parseRes(data):
 	i = 1
 	ret = {1:0, 2:0, 3:0}
 	for element in data:
-		query = element.get('name')
-	    if query is None:
-	        return {}
-	    result = element.get('color')
-	    if result is None:
-	        return {}
 	    ret[i] = element.get('name')
 	    i = i + 1
 	return ret
