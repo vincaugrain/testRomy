@@ -3,7 +3,6 @@
 import urllib
 import json
 import os
-import urllib2
 
 from flask import Flask
 from flask import request
@@ -44,8 +43,8 @@ def processRequest(req):
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
     token = "Bearer " + accessToken
 
-    request = urllib2.Request(url, headers={"Authorization" : token})
-    result = urllib2.urlopen(request).read()
+    request = urllib.Request(url, headers={"Authorization" : token})
+    result = urllib.urlopen(request).read()
 
     last = result.get_json(silent=True, force=True)
     print(print(json.dumps(last, indent=4)))
