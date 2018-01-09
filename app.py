@@ -43,7 +43,8 @@ def processRequest(req):
     baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription"
     url = baseurl + "&format=json"
     result = urlopen(url).read()
-    print(result)
+    last = result.get_json(silent=True, force=True)
+    print(print(json.dumps(last, indent=4)))
     data = json.loads(result)
     cost = parseRes(data)
     res = makeWebhookResult(data, cost)
