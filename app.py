@@ -44,7 +44,7 @@ def processRequest(req):
     token = "Bearer " + accessToken
 
     request = urllib.request.Request(url, headers={"Authorization" : token})
-    result = urllib.urlopen(request).read()
+    result = urllib.request.urlopen(request).read()
 
     last = result.get_json(silent=True, force=True)
     print(print(json.dumps(last, indent=4)))
