@@ -39,7 +39,7 @@ def parseRes(data):
     return ret
 
 def processRequest(req):
-    if req.get("result").get("action") != "get_prescription":
+    if req.get('result').get('action') != "get_prescription":
         return {}
     url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
