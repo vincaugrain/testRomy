@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib.request
+import urllib
 import json
 import os
 
