@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-import urllib
+import urllib.request
 import json
 import os
 
 from flask import Flask
 from flask import request
 from flask import make_response
-from urllib.request import urlopen, request
+from urllib.request import urlopen, Request
 
 
 app = Flask(__name__)
