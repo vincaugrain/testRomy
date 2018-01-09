@@ -47,6 +47,7 @@ def processRequest(req):
     baseurl = "https://staging-app.api.romy-paris.com/google/api/prescription"
     url = baseurl + "&format=json"
     result = urlopen(url).read()
+    print(result)
     data = json.loads(result)
     cost = parseRes(data)
     res = makeWebhookResult(data, cost)
@@ -56,7 +57,7 @@ def makeWebhookResult(req, cost):
     if req.get("result").get("action") != "get_prescription":
         return {}
     result = req.get("result")
-    
+
     speech = "Votre prescription est composée des capsules " + str(cost[1]) + ", " 
     if cost[2] != 0:
     	speech = speech + str(cost['prescription2'])
