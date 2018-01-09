@@ -47,9 +47,6 @@ def processRequest(req):
     print(accessToken)
     request = urllib.request.Request(url, headers={"Authorization" : token})
     result = urllib.request.urlopen(request).read()
-
-    last = result.get_json(silent=True, force=True)
-    print(print(json.dumps(last, indent=4)))
     data = json.loads(result)
     cost = parseRes(data)
     res = makeWebhookResult(data, cost)
