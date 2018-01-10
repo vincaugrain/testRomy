@@ -39,7 +39,7 @@ def parseRes(data):
     return ret
 
 def processRequest(req):
-    if req.get('result').get('action') != "get_prescription":
+    if req.get("result").get("action") != "get_prescription":
         return {}
     url = "https://staging-app.api.romy-paris.com/google/api/prescription"
     accessToken = req.get('originalRequest').get('data').get('user').get('accessToken')
@@ -53,7 +53,7 @@ def processRequest(req):
     return res
 
 def makeWebhookResult(req, cost):
-    if req.get('result').get('action') != "get_prescription":
+    if req.get("result").get("action") != "get_prescription":
         return {}
     result = req.get('result')
     if cost[1] == 0:
