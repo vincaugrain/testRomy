@@ -52,10 +52,8 @@ def processRequest(req):
     res = makeWebhookResult(data, cost)
     return res
 
-def makeWebhookResult(req, cost):
-    if req.get("result").get("action") != "get_prescription":
-        return {}
-    result = req.get('result')
+def makeWebhookResult(data, cost):
+    #result = data.get('capsules')
     if cost[1] == 0:
     	speech = "Votre prescription n'est pas prête pour le moment. Merci de réessayer ulterieurement."
     else:
